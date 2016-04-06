@@ -3,18 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <title>Angular 2 - Simple Reddit</title>
-
-    <script src="scripts/libs/angular2-polyfills.js"></script>
-    <script src="scripts/libs/angular2.dev.js"></script>
     <script src="scripts/libs/es6-shim.js"></script>
-    <script src="scripts/libs/rx.js"></script>
+    <script src="scripts/libs/angular2-polyfills.js"></script>
     <script src="scripts/libs/system.src.js"></script>
-    <script src="scripts/app/testclass.js"></script>
-    <script type="text/javascript">
-        var t = TestClass();
+    <script src="scripts/libs/rx.js"></script>
+    <script src="scripts/libs/angular2.dev.js"></script>
+    <script>
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('/scripts/app/RedditApp.js').then(null, console.error.bind(console));
     </script>
+    <link rel="stylesheet" type="text/css" href="resources/vendor/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-
+    <reddit></reddit>
 </body>
 </html>

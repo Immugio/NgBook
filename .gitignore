@@ -243,3 +243,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/src/NgBook/wwwroot/Scripts/App/App.js
+/src/NgBook/wwwroot/Scripts/App/RedditApp.js
