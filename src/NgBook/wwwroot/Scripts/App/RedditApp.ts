@@ -1,31 +1,49 @@
 ﻿import { bootstrap } from "angular2/platform/browser";
 import { Component } from "angular2/core";
 
+class Article {
+
+    constructor(public title: string, public link: string, public votes?: number) {
+        this.votes = votes || 0;
+    }
+}
+
 @Component({
-    selector: "reddit",
-    template: `
-    <form class="ui large form segment">
-        <h3 class="ui header">Add a Link</h3>
+    selector: "reddit-article",
+    host: { "class": "row" },
+    templateUrl: "reddit-article.html"
+})
+class RedditArticle {
 
-        <div class="field">
-            <label for="title">Title:</label>
-            <input name="title" #newtitle>
+    public votes: number;
+    public title: string;
+    public link: string;
 
-        </div>
-        <div class="field">
-            <label for="link">Link:</label>
-            <input name="link" #newlink>
-        </div>
+    constructor() {
+        this.title = "Angular 2";
+        this.link = "http://angular.io";
+        this.votes = 10;
+    }
 
-        <button (click)="addArticle(newtitle, newlink)" class="ui positive right floated button">Submit link</button>
-    </form>
-`
+    public voteUp($event: Event) {
+        $event.preventDefault();
+        this.votes += 1;
+    }
+
+    public voteDown($event: Event) {
+        $event.preventDefault();
+        this.votes -= 1;
+    }
+}
+
+@Component({
+    selector: "reddit-app",
+    templateUrl: "reddit-app.html",
+    directives: [RedditArticle]
 })
 class RedditApp {
 
-    constructor() {
-
-    }
+    constructor() { }
 
     public addArticle(title: HTMLInputElement, link: HTMLInputElement): void {
         console.log(`Adding article title: ${title.value} and link: ${link.value}`);
