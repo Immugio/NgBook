@@ -51,7 +51,7 @@ class RedditApp {
     public articles: Article[];
 
     public get sortedArticles(): Article[] {
-        return this.articles.sort((a, b) => {return b.votes - a.votes });
+        return this.articles.sort((a, b) => b.votes - a.votes);
     }
 
     constructor() {
