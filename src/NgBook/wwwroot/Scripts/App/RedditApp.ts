@@ -50,6 +50,10 @@ class RedditApp {
 
     public articles: Article[];
 
+    public get sortedArticles(): Article[] {
+        return this.articles.sort((a, b) => {return b.votes - a.votes });
+    }
+
     constructor() {
         this.articles = [
             new Article("Angular 2", "http://angular.io", 3),
@@ -63,10 +67,6 @@ class RedditApp {
         this.articles.push(new Article(title.value, link.value, 0));
         title.value = "";
         link.value = "";
-    }
-
-    public sortedArticles(): Article[] {
-        return this.articles.sort((a, b) => { return b.votes - a.votes });
     }
 }
 
