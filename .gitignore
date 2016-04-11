@@ -245,3 +245,5 @@ ModelManifest.xml
 .fake/
 /src/NgBook/wwwroot/Scripts/App/App.js
 /src/NgBook/wwwroot/Scripts/App/RedditApp.js
+/src/NgBook/wwwroot/Scripts/RedditApp/App.js
+/src/NgBook/wwwroot/Scripts/RedditApp/RedditApp.js

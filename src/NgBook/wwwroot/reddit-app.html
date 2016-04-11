@@ -17,5 +17,6 @@
 </form>
 
 <div class="ui grid posts">
-    <reddit-article *ngFor="#article of sortedArticles" [article]="article"></reddit-article>
+    <reddit-article *ngFor="#article of sortedArticles" [article]="article"
+                    (articleClicked)="onArticleClicked($event)"></reddit-article>
 </div>

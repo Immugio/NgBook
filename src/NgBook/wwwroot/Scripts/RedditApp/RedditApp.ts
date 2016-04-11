@@ -1,5 +1,5 @@
 ﻿import { bootstrap } from "angular2/platform/browser";
-import { Component } from "angular2/core";
+import { Component, EventEmitter } from "angular2/core";
 
 class Article {
 
@@ -22,13 +22,17 @@ class Article {
     selector: "reddit-article",
     host: { "class": "row" },
     inputs: ["article"],
+    outputs: ["articleClicked"],
     templateUrl: "reddit-article.html"
 })
 class RedditArticle {
 
     public article: Article;
+    public articleClicked: EventEmitter<string>;
 
-    constructor() { }
+    constructor() {
+        this.articleClicked = new EventEmitter<string>();
+    }
 
     public voteUp($event: Event) {
         $event.preventDefault();
@@ -38,6 +42,10 @@ class RedditArticle {
     public voteDown($event: Event) {
         $event.preventDefault();
         this.article.votes -= 1;
+    }
+
+    public onArticleClicked(id: string): void {
+        this.articleClicked.emit(id);
     }
 }
 
@@ -67,6 +75,14 @@ class RedditApp {
         this.articles.push(new Article(title.value, link.value, 0));
         title.value = "";
         link.value = "";
+    }
+
+    public propagatedFromChildren(id: string) {
+        console.log(id);
+    }
+
+    public onArticleClicked(id: string): void {
+        console.log(id);
     }
 }
 
